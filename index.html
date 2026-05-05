@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surprise For Uzhilla 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#ffd6e8,#e6ccff);
+overflow:hidden;
+text-align:center;
+}
+.page{display:none;padding:20px;}
+.active{display:block;}
+.card{
+background:rgba(255,255,255,0.65);
+backdrop-filter:blur(15px);
+padding:25px;
+border-radius:25px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+max-width:420px;
+margin:auto;
+}
+h1,h2{color:#ff4d88;}
+button{
+margin-top:15px;
+padding:12px 25px;
+border:none;
+border-radius:25px;
+background:#ff4d88;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+input{
+padding:10px;
+border-radius:20px;
+border:none;
+margin-top:15px;
+text-align:center;
+}
+img{
+width:220px;
+border-radius:15px;
+margin-top:15px;
+}
+.envelope{font-size:80px;cursor:pointer;}
+#panda{font-size:90px;cursor:pointer;}
+#heat{font-size:80px;cursor:pointer;}
+.type{
+white-space:pre-line;
+font-size:16px;
+margin-top:15px;
+min-height:150px;
+line-height:1.6;
+}
+.floating{
+position:absolute;
+animation:float 6s linear infinite;
+}
+@keyframes float{
+0%{transform:translateY(100vh);opacity:1;}
+100%{transform:translateY(-10vh);opacity:0;}
+}
+</style>
+</head>
+<body>
+
+<div class="page active" id="page0"><div class="card"><h1>Hey 💖</h1><p>This is only for someone very special...</p><input id="nameInput" placeholder="Enter your name"><br><button onclick="checkName()">Unlock 💫</button><p id="error"></p><img src="presents-gift.webp"></div></div>
+
+<div class="page" id="page1"><div class="card"><h1>Hey Sara 💖</h1><p>Something soft, warm, and full of care for you 🥺💞</p><button onclick="nextPage(2)">Open ➡️</button></div></div>
+
+<div class="page" id="page2"><div class="card"><h2>Open this 💌</h2><img src="caring-dudu-bubu-bubu-dudu.webp"><div class="envelope" onclick="typeText('letter', letterMsg)">📩</div><div id="letter" class="type"></div><button onclick="nextPage(3)">Next ➡️</button></div></div>
+
+<div class="page" id="page3"><div class="card"><h2>For your comfort 🍫🍦</h2><img src="happy-summer.webp"><div id="treat" class="type"></div><button onclick="typeText('treat', treatMsg)">Read 💖</button><button onclick="nextPage(4)">Next ➡️</button></div></div>
+
+<div class="page" id="page4"><div class="card"><h2>Let it out 😤🐼</h2><div id="panda" onclick="slap()">🐼</div><p id="combo"></p><p id="reaction"></p><button onclick="nextPage(5)">Next ➡️</button></div></div>
+
+<div class="page" id="page5"><div class="card"><h2>Comfort zone 💖</h2><img src="mochipeachcat-mochi.webp"><p>Tap to feel warmth 🥺</p><div id="heat" onclick="heal()">🔥</div><p id="relief"></p><button onclick="nextPage(6)">Next ➡️</button></div></div>
+
+<div class="page" id="page6"><div class="card"><h2>Your feelings 💕</h2><img src="consoles-caring.webp"><div id="mood" class="type"></div><button onclick="typeText('mood', moodMsg)">Read 💖</button><button onclick="nextPage(7)">Next ➡️</button></div></div>
+
+<div class="page" id="page7"><div class="card"><h2>Come here 🤗</h2>
+<img src="newlyweds-couple.webp" style="width:220px;border-radius:15px;margin-top:15px;">
+<img src="hugs-hug.webp" style="width:220px;border-radius:15px;margin-top:15px;">
+<div id="final" class="type"></div>
+<button onclick="typeText('final', finalMsg)">Open 💖</button>
+<button onclick="hug()">Hug Me 🤗</button>
+</div></div>
+
+<script>
+let slapSound = new Audio("https://www.soundjay.com/button/beep-07.wav");
+
+function checkName(){
+let name=document.getElementById("nameInput").value.toLowerCase();
+if(name==="sara"){ nextPage(1); }
+else{ document.getElementById("error").innerText="Only Sara can open this 🥺💖"; }
+}
+
+function nextPage(n){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById('page'+n).classList.add('active');
+}
+
+function typeText(id,text){
+let i=0; let el=document.getElementById(id);
+el.innerHTML="";
+let interval=setInterval(()=>{ el.innerHTML+=text.charAt(i); i++; if(i>=text.length) clearInterval(interval); },28);
+}
+
+let letterMsg = "Sara… 💖\n\nI know these days feel heavy 🥺\nYour body is tired and your heart feels soft 💕\nSometimes everything feels too much\n\nYou don’t have to be strong always 🤍\nYou can rest, pause, and just breathe 🌸\nIf I were there, I’d hold your hand gently 🤗\nSit beside you quietly\n\nWrap you in warmth and comfort 💞\nTell you everything will be okay\nBecause you mean so much to me 💖\nMore than words can ever say ✨";
+
+let treatMsg = "This is your comfort time 💖\nChocolate to sweeten your mood 🍫\nIce cream for little happiness 🍦\n\nWrap yourself in blanket 🛌\nWatch something soft 🎬\nTake deep breaths slowly 💕\n\nYou deserve rest without guilt 🤍\nYou deserve care and softness 🌸\nAnd I wish I could bring all that to you 🥺💞";
+
+let moodMsg = "It’s okay to feel everything 💕\nYou don’t have to explain yourself to anyone\n\nIf you feel like crying 🥺 let it out\nIf you feel irritated 😤 I understand\nIf you feel quiet 🤍 that’s okay too\n\nYou are not too much\nYou are not difficult\nYou are just going through something real 💖\n\nEven your silence speaks to me\nEven your mood swings don’t change how I see you 💞\n\nI’ll stay with you in every mood 🤗\nIn your smiles 😊\nIn your tears 🥺\nAnd in your quiet moments 🤍\n\nYou don’t have to be perfect\nJust be you… that’s more than enough 💖✨";
+
+let finalMsg = "Come here Sara 🤗💖\n\n1. Let me hold you softly 💕\n2. Like you truly deserve to be held\n3. Safe, warm, and full of care 🤍\n\n4. I know these days are not easy 🥺\n5. Your body feels tired and your heart feels heavy\n\n6. You don’t have to be strong right now 🌸\n7. You can just rest and be yourself\n\n8. If you feel like crying, I’m here 🥺\n9. If you feel irritated, I still understand you 💞\n\n10. You are not alone in this 💖\n11. You are deeply cared for 🤗\n12. You are more important than you think ✨\n\n13. Even your quiet moments matter 🤍\n14. Even your mood swings are accepted 💕\n\n15. I wish I could take your pain away 💞\n16. But until then, I’ll stay right here with you\n\n17. Holding you gently in this moment 🤗\n18. Reminding you that everything will be okay 💖\n\n19. You are safe here\n20. You are loved more than words can say 💕\n\n21. And no matter what happens…\n22. I’m not going anywhere 🤍💖";
+
+let count=0;
+function slap(){
+count++; slapSound.currentTime=0; slapSound.play().catch(()=>{});
+document.getElementById("combo").innerText="Slap combo 😤: "+count;
+}
+
+let heat=0;
+function heal(){
+heat++;
+document.getElementById("relief").innerText="Warmth level 💖: "+heat+"\nFeeling a little better 🥺\nI’m right here 🤗";
+}
+
+function hug(){
+for(let i=0;i<40;i++){
+let heart=document.createElement("div");
+heart.innerHTML="💖";
+heart.style.position="fixed";
+heart.style.left=Math.random()*100+"vw";
+heart.style.top=Math.random()*100+"vh";
+heart.style.fontSize=(Math.random()*25+20)+"px";
+heart.style.zIndex="9999";
+document.body.appendChild(heart);
+setTimeout(()=>{heart.style.transition="all 3s linear";heart.style.transform="translateY(-200px) scale(2)";heart.style.opacity="0";},50);
+setTimeout(()=>heart.remove(),3000);
+}
+}
+</script>
+</body>
+</html>
